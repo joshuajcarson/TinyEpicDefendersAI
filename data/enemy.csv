@@ -1,0 +1,10 @@
+Name,Region1,Region2,Type
+CoastMountains,Coast,Mountains,enemy
+ForestDesert,Forest,Desert,enemy
+ForestRuins,Forest,Ruins,enemy
+ForestCoast,Forest,Coast,enemy
+MountainsPlains,Mountains,Plains,enemy
+CoastDesert,Coast,Desert,enemy
+PlainsDesert,Plains,Desert,enemy
+MountainsRuins,Mountains,Ruins,enemy
+PlainsRuins,Plains,Ruins,enemy

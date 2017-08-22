@@ -1,0 +1,11 @@
+Name,MaxHealth,PassiveAbility,ActionAbility,Type
+Paladin,5,RETRIBUTE,,hero
+Cleric,4,,HEAL,hero
+Barbarian,4,BERSERK,,hero
+Druid,4,MARTYR,NATURE'S CALL,hero
+Bard,4,,BEFRIEND,hero
+Commander,4,DEPLOY,COMMAND,hero
+Sorcerer,4,,LIGHTNING,hero
+Oracle,4,SCRY,,hero
+Warrior,4,,SPRINT,hero
+Ranger,4,FARSHOT,,hero

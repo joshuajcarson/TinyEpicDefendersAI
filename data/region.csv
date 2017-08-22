@@ -1,0 +1,14 @@
+Name,Ability,MaxHealth,Type
+Capital City,REST,6,region
+Desert,HEATWAVE,4,region
+Desert,SANDSTORM,4,region
+Ruins,ABSORB,4,region
+Ruins,SACRIFICE,4,region
+Forest,ENCHANT,4,region
+Forest,RECONCILE,4,region
+Mountains,FORTIFY,4,region
+Mountains,PREPARE,4,region
+Plains,SAFEGUARD,4,region
+Plains,PATROL,4,region
+Coast,EMBARK,4,region
+Coast,DISPATCH,4,region

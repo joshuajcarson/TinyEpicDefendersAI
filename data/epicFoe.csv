@@ -1,0 +1,7 @@
+Name,MaxHealth,Ability,StartingZone,Type
+Dragon,10,SCORCH,Mountains,epicFoe
+Kraken,10,DEMOLISH,Coast,epicFoe
+The Ancient,10,GROW,Forest,epicFoe
+Demon Lord,10,ENFEEBLEMENT,Ruins,epicFoe
+Colossus,10,CLASH,Desert,epicFoe
+Giant,10,STOMP,Plains,epicFoe
