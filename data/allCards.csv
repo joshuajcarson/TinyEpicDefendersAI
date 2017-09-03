@@ -1,0 +1,64 @@
+Name,Type,Deck,Visible,PassiveAbility,Ability,FreeAction,Action,Region,Region2,CurrentHealth,MaxHealth,CurrentPosition
+group,ally,destruction,TRUE,,,,,,,,,destruction
+group,ally,destruction,TRUE,,,,,,,,,destruction
+blue,ally,destruction,TRUE,,,,,,,,,destruction
+green,ally,destruction,TRUE,,,,,,,,,destruction
+yellow,ally,destruction,TRUE,,,,,,,,,destruction
+red,ally,destruction,TRUE,,,,,,,,,destruction
+Timeless Sandglass,artifact,artifact,TRUE,,,Ignore all enemies until the next Ally or Group Ally Card is drawn.,,,,,,destruction
+Spear of Valor,artifact,artifact,TRUE,,,"Cause 2 Points of Damage to the Epic Foe, regardless of location.",,,,,,destruction
+Staff of Control,artifact,artifact,TRUE,,,,Move the Epic Foe to an Outer Region of your choice.,,,,,destruction
+Celestial Guardian,artifact,artifact,TRUE,,,,Reduce the Threat Level of the Capital City by 3. Must be in the Capital City.,,,,,destruction
+Elixir of Errand,artifact,artifact,TRUE,,,Gain 2 Action Points to spend immediately.,,,,,,destruction
+Zodiac Cloak,artifact,artifact,TRUE,,,Shuffle 2 Ally or Group Ally Cards back into the Turn Deck and continue.,,,,,,destruction
+Boots of Zephyr,artifact,artifact,TRUE,,,"For the rest of this Round, your Move Actions cost 0 Action Points.",,,,,,destruction
+Hammer of Might,artifact,artifact,TRUE,,,,Reduce the Threat Level of the Region you are in to 0.,,,,,destruction
+Shield of Aughmoore,artifact,artifact,TRUE,,,,"For the rest of this Round, you may Defend Regions without losing Health.",,,,,destruction
+Horn of Command,artifact,artifact,TRUE,,,,"Relocate any number of Heroes to any Region, this includes the Capital City.",,,,,destruction
+Harpy,direEnemy,destruction,FALSE,,FRENZY,,,Mountains,,,,destruction
+Minotaur,direEnemy,destruction,FALSE,,TOUGHNESS,,,Forest,,,,destruction
+Sea Serpent,direEnemy,destruction,FALSE,,TSUNAMI,,,Coast,,,,destruction
+Manticore,direEnemy,destruction,FALSE,,RAZE,,,Desert,,,,destruction
+Giant Wasps,direEnemy,destruction,FALSE,,STING,,,Plains,,,,destruction
+Wraith,direEnemy,destruction,FALSE,,DRAIN,,,Ruins,,,,destruction
+CoastMountains,enemy,destruction,FALSE,,,,,Coast,Mountains,,,destruction
+ForestDesert,enemy,destruction,FALSE,,,,,Forest,Desert,,,destruction
+ForestRuins,enemy,destruction,FALSE,,,,,Forest,Ruins,,,destruction
+ForestCoast,enemy,destruction,FALSE,,,,,Forest,Coast,,,destruction
+MountainsPlains,enemy,destruction,FALSE,,,,,Mountains,Plains,,,destruction
+CoastDesert,enemy,destruction,FALSE,,,,,Coast,Desert,,,destruction
+PlainsDesert,enemy,destruction,FALSE,,,,,Plains,Desert,,,destruction
+MountainsRuins,enemy,destruction,FALSE,,,,,Mountains,Ruins,,,destruction
+PlainsRuins,enemy,destruction,FALSE,,,,,Plains,Ruins,,,destruction
+Dragon,epicFoe,destruction,FALSE,,SCORCH,,,Mountains,,10,10,destruction
+Kraken,epicFoe,destruction,FALSE,,DEMOLISH,,,Coast,,10,10,destruction
+The Ancient,epicFoe,destruction,FALSE,,GROW,,,Forest,,10,10,destruction
+Demon Lord,epicFoe,destruction,FALSE,,ENFEEBLEMENT,,,Ruins,,10,10,destruction
+Colossus,epicFoe,destruction,FALSE,,CLASH,,,Desert,,10,10,destruction
+Giant,epicFoe,destruction,FALSE,,STOMP,,,Plains,,10,10,destruction
+Paladin,hero,destruction,TRUE,RETRIBUTE,,,,,,5,5,destruction
+Cleric,hero,destruction,TRUE,,HEAL,,,,,4,4,destruction
+Barbarian,hero,destruction,TRUE,BERSERK,,,,,,4,4,destruction
+Druid,hero,destruction,TRUE,MARTYR,NATURE'S CALL,,,,,4,4,destruction
+Bard,hero,destruction,TRUE,,BEFRIEND,,,,,4,4,destruction
+Commander,hero,destruction,TRUE,DEPLOY,COMMAND,,,,,4,4,destruction
+Sorcerer,hero,destruction,TRUE,,LIGHTNING,,,,,4,4,destruction
+Oracle,hero,destruction,TRUE,SCRY,,,,,,4,4,destruction
+Warrior,hero,destruction,TRUE,,SPRINT,,,,,4,4,destruction
+Ranger,hero,destruction,TRUE,FARSHOT,,,,,,4,4,destruction
+Capital City,region,destruction,TRUE,,REST,,,,,6,6,7
+Desert,region,destruction,TRUE,,HEATWAVE,,,,,3,4,destruction
+Desert,region,destruction,TRUE,,SANDSTORM,,,,,3,4,destruction
+Ruins,region,destruction,TRUE,,ABSORB,,,,,3,4,destruction
+Ruins,region,destruction,TRUE,,SACRIFICE,,,,,3,4,destruction
+Forest,region,destruction,TRUE,,ENCHANT,,,,,3,4,destruction
+Forest,region,destruction,TRUE,,RECONCILE,,,,,3,4,destruction
+Mountains,region,destruction,TRUE,,FORTIFY,,,,,3,4,destruction
+Mountains,region,destruction,TRUE,,PREPARE,,,,,3,4,destruction
+Plains,region,destruction,TRUE,,SAFEGUARD,,,,,3,4,destruction
+Plains,region,destruction,TRUE,,PATROL,,,,,3,4,destruction
+Coast,region,destruction,TRUE,,EMBARK,,,,,3,4,destruction
+Coast,region,destruction,TRUE,,DISPATCH,,,,,3,4,destruction
+CurrentTurn,counters,counters,TRUE,,,,,,,,,1
+CurrentRound,counters,counters,TRUE,,,,,,,,,1
+CurrentGameGuid,counters,counters,TRUE,,,,,,,,,PLACE_GUID_HERE

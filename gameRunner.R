@@ -1,4 +1,7 @@
 source('R/dataLoader.R')
+source('R/gameStateManager.R')
 
-loadInitialGameData()
-currentGameState <- setupGameState(2, "easy")
+baseGameData <- loadInitialGameData()
+currentGameState <- setupGameState(baseGameData, 3, 1)
+
+currentGameState <- playTurn(currentGameState)
