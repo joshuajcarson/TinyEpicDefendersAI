@@ -1,7 +1,9 @@
 source('R/dataLoader.R')
 source('R/gameStateManager.R')
 
-baseGameData <- loadInitialGameData()
-currentGameState <- setupGameState(baseGameData, 3, 1)
+loadInitialGameData()
+setupGameState(4, 1)
 
-currentGameState <- playTurn(currentGameState)
+while(!isEnemyWon() && !isPlayersWon()) {
+  playTurn()
+}
