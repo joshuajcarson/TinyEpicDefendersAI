@@ -46,7 +46,7 @@ Sorcerer,hero,destruction,TRUE,,LIGHTNING,,,,,4,4,destruction
 Oracle,hero,destruction,TRUE,SCRY,,,,,,4,4,destruction
 Warrior,hero,destruction,TRUE,,SPRINT,,,,,4,4,destruction
 Ranger,hero,destruction,TRUE,FARSHOT,,,,,,4,4,destruction
-Capital City,region,destruction,TRUE,,REST,,,,,6,6,7
+Capital City,region,destruction,TRUE,,REST,,,,,6,6,6
 Desert,region,destruction,TRUE,,HEATWAVE,,,,,3,4,destruction
 Desert,region,destruction,TRUE,,SANDSTORM,,,,,3,4,destruction
 Ruins,region,destruction,TRUE,,ABSORB,,,,,3,4,destruction

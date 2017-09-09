@@ -13,28 +13,75 @@ dealRegionDamage <- function(regionRow) {
   }
 }
 
-getRegionRow <- function(enemyOrDireRow, do2 = false) {
-  ifelse(do2, 
+getRegionRow <- function(enemyOrDireRow, shouldDoSecondRegion = FALSE) {
+  ifelse(shouldDoSecondRegion, 
          which(currentGameState$Name == currentGameState[enemyOrDireRow,]$Region2 & currentGameState$Deck == 'region'),
          which(currentGameState$Name == currentGameState[enemyOrDireRow,]$Region & currentGameState$Deck == 'region'))
 }
 
+handleHeroAttemptToDefend <- function(enemyToPlayRow, shouldDoSecondRegion = FALSE) {
+  regionRow1 <- getRegionRow(enemyToPlayRow)
+  regionCurrentPosition <- currentGameState[regionRow1,]$CurrentPosition
+  heroesThatCanDefendRows <- which(currentGameState$Type == 'hero' & currentGameState$CurrentPosition == regionCurrentPosition & currentGameState$CurrentHealth > 0)
+  choiceToMake <- sample(length(heroesThatCanDefendRows) + 1, 1)
+  if(choiceToMake > length(heroesThatCanDefendRows)) {
+    dealRegionDamage(regionRow1)
+  } else {
+    heroToTakeDamageRow <- heroesThatCanDefendRows[choiceToMake]
+    currentGameState[heroToTakeDamageRow,]$CurrentHealth <<- currentGameState[heroToTakeDamageRow,]$CurrentHealth - 1
+  }
+}
+
 handleEnemyCard <- function(enemyToPlayRow) {
-  region1row <- which(currentGameState$Name == currentGameState[enemyToPlayRow,]$Region & currentGameState$Deck == 'region')
-  region2row <- which(currentGameState$Name == currentGameState[enemyToPlayRow,]$Region2 & currentGameState$Deck == 'region')
-  dealRegionDamage(region1row)
-  dealRegionDamage(region2row)
+  handleHeroAttemptToDefend(enemyToPlayRow)
+  handleHeroAttemptToDefend(enemyToPlayRow, TRUE)
 }
 
 handleDireEnemyCard <- function(direEnemyToPlayRow) {
   direEnemyAbility <- currentGameState[direEnemyToPlayRow]$Ability
-  if(direEnemyAbility == 'FRENZY') {
-    currentGameState[which(currentGameState$Deck == 'region' && currentGameState$CurrentHealth == '4' && currentGameState$MaxHealth != 7)]$CurrentHealth <<- 3
+  if(direEnemyAbility == 'TSUNAMI') {
+    heroesInOuterRegions <- which(currentGameState$Type == 'hero' & currentGameState$Deck != 'destruction' & currentGameState$CurrentPosition != '7')
+    
   }
-  regionRow <- which(currentGameState$Name == currentGameState[direEnemyToPlayRow,]$Region & currentGameState$Deck == 'region')
-  dealRegionDamage(regionRow)
+  dealRegionDamage(getRegionRow(direEnemyToPlayRow))
+  if(direEnemyAbility == 'FRENZY') {
+    currentGameState[which(currentGameState$Deck == 'region' & currentGameState$CurrentHealth == '4' & currentGameState$MaxHealth != 7)]$CurrentHealth <<- 3
+  }
   if(direEnemyAbility == 'RAZE') {
-    dealRegionDamage(regionRow)
+    dealRegionDamage(getRegionRow(direEnemyToPlayRow))
+  }
+  if(direEnemyAbility == 'STING') {
+    heroesWithFullHealth <- which(currentGameState$Type == 'hero' & currentGameState$CurrentHealth == currentGameState$MaxHealth & currentGameState$Deck != 'destruction')
+    currentGameState[heroesWithFullHealth,]$CurrentHealth <<- currentGameState[heroesWithFullHealth,]$CurrentHealth - 1
+  }
+  if(direEnemyAbility == 'DRAIN') {
+    heroes <- which(currentGameState$Type == 'hero' & currentGameState$Deck != 'destruction')
+    heroToBeDrained <- sample(heroes, 1)
+    currentGameState[heroToBeDrained,]$CurrentHealth <<- max(c(0, currentGameState[heroToBeDrained,]$CurrentHealth - 2))
+  }
+}
+
+selectTheHero <- function(nameOfAlly, heroRows) {
+  if(nameOfAlly == 'group') {
+    sample(heroRows, 1)
+  } else {
+    which(currentGameState$Deck == nameOfAlly)
+  }
+}
+
+handleAllyCard <- function(allyToPlayRow) {
+  name <- currentGameState[allyToPlayRow,]$Name
+  heroRows <- which(currentGameState$Type == 'hero' & currentGameState$Deck != 'destruction')
+  selectedHero <- selectTheHero(name, heroRows)
+  
+  selectedHero <- which(currentGameState$Deck == name)
+  currentPositionAsInt <- as.integer(currentGameState[selectedHero,]$CurrentPosition)
+  if(currentPositionAsInt != 7) {
+    howToMoveAroundBoard <- sample(c(-1,1), 1)
+    currentPositionAsInt <- (currentPositionAsInt + howToMoveAroundBoard) %% 6
+    currentGameState[selectedHero,]$CurrentPosition <<- as.character(currentPositionAsInt)
+  } else {
+    currentGameState[selectedHero,]$CurrentPosition <<- '3'
   }
 }
 
@@ -46,6 +93,8 @@ playACard <- function(possibleTurnRows) {
     handleEnemyCard(cardToPlayRow)
   } else if (currentGameState[cardToPlayRow,]$Type == 'direEnemy') {
     handleDireEnemyCard(cardToPlayRow)
+  } else if (currentGameState[cardToPlayRow,]$Type == 'ally') {
+    handleAllyCard(cardToPlayRow)
   }
   
   incrementTurn()

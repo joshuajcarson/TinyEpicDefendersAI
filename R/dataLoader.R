@@ -15,15 +15,24 @@ assignPositionToRegion <- function(regionName, currentPosition) {
   currentGameState[pickedRandomRow,]$Deck <<- 'region'
 }
 
+getAlliesThatAreNotGroup <- function() {
+  which(currentGameState$Deck != 'destruction' & currentGameState$Type == 'ally' & currentGameState$Name != 'group')
+}
+
+assignHeroToColor <- function() {
+  heroRows <- which(currentGameState$Type == 'hero')
+  colorRows <- getAlliesThatAreNotGroup()
+  heroRows <- sample(heroRows, length(colorRows))
+  currentGameState[heroRows]$CurrentPosition <<- '7'
+  currentGameState[heroRows]$Deck <<- currentGameState[colorRows]$Name
+}
+
 setupGameState <- function(numberOfPlayers, difficulty) {
   currentGameState <<- baseGameData
   allyRows <- which(currentGameState$Type == 'ally')
   currentGameState[allyRows[(numberOfPlayers-1):(numberOfPlayers+2)],]$Deck <<- 'turn'
   
-  heroRows <- which(currentGameState$Type == 'hero')
-  pickedHeroRows <- sample(heroRows, numberOfPlayers)
-  currentGameState[pickedHeroRows,]$Deck <<- 'hero'
-  currentGameState[pickedHeroRows,]$CurrentPosition <<- '7'
+  assignHeroToColor()
   
   enemyRows <- which(currentGameState$Type == 'enemy')
   pickedEnemyRows <- sample(enemyRows, 6)
@@ -38,7 +47,7 @@ setupGameState <- function(numberOfPlayers, difficulty) {
   pickedEpicFoeRows <- sample(epicFoeRows, 1)
   currentGameState[pickedEpicFoeRows,]$Deck <<- 'epicFoe'
   
-  randomOrderForLand <<- sample(1:6, 6)
+  randomOrderForLand <- sample(0:5, 6)
   assignPositionToRegion('Desert', randomOrderForLand[1])
   assignPositionToRegion('Ruins', randomOrderForLand[2])
   assignPositionToRegion('Forest', randomOrderForLand[3])
