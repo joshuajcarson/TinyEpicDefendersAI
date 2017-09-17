@@ -56,4 +56,5 @@ setupGameState <- function(numberOfPlayers, difficulty) {
   assignPositionToRegion('Coast', randomOrderForLand[6])
   
   currentGameState[which(currentGameState$Name == 'CurrentGameGuid'),]$CurrentPosition <<- UUIDgenerate()
+  currentGameState[which(currentGameState$Name == 'DifficultySelected'),]$CurrentPosition <<- as.character(difficulty)
 }

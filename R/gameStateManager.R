@@ -1,8 +1,13 @@
+onceATurnNames <- function() {
+  c('BlueOnceATurnUsed', 'GreenOnceATurnUsed', 'YellowOnceATurnUsed', 'RedOnceATurnUsed')
+}
+
 incrementTurn <- function() {
   currentTurnRow <- which(currentGameState$Name == 'CurrentTurn')
   currentTurn <- currentGameState[currentTurnRow]$CurrentPosition
   currentTurnIncremented <- as.integer(currentTurn) + 1
   currentGameState[currentTurnRow]$CurrentPosition <<- as.character(currentTurnIncremented)
+  currentGameState[which(currentGameState$Name %in% onceATurnNames()),]$CurrentPosition <<- as.character(FALSE)
 }
 
 dealRegionDamage <- function(regionRow) {
